@@ -12,7 +12,7 @@ class ClientsTableBase extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://35.193.132.91:8000/clients/')
+        fetch('http://localhost:8000/clients/')
         .then(res => res.json())
         .then(
             json => {this.setState({ 'dataset': json });}

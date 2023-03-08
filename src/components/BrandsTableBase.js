@@ -12,7 +12,7 @@ class BrandsTableBase extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://35.193.132.91:8000/brand/')
+        fetch('http://localhost:8000/brand/')
         .then(res => res.json())
         .then(
             json => {this.setState({ 'dataset': json });}

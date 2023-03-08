@@ -12,7 +12,7 @@ class DevicesTableBase extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://35.193.132.91:8000/devices/')
+        fetch('http://localhost:8000/devices/')
         .then(res => res.json())
         .then(
             json => {this.setState({ 'dataset': json });}

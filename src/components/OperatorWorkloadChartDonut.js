@@ -1,5 +1,7 @@
 import React from 'react'
-import { Card, DonutChart, Title } from '@tremor/react'
+import { Card, DonutChart, Title, Footer, ButtonInline } from '@tremor/react'
+import * as RiIcons from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 class OperatorWorkloadChartDonut extends React.Component {
     constructor(props) {
@@ -11,7 +13,7 @@ class OperatorWorkloadChartDonut extends React.Component {
   
   
     componentDidMount() {
-        fetch('http://35.193.132.91:8000/operators/operator_by_workload/')
+        fetch('http://localhost:8000/operators/operator_by_workload/')
         .then(res => res.json())
         .then(
           json => {this.setState(
@@ -25,8 +27,8 @@ class OperatorWorkloadChartDonut extends React.Component {
   
     render() {
         return (
-            <Card maxWidth="max-w-sm">
-                <Title>Operator by Workload</Title>
+            <Card>
+                <Title>Operators by Workload</Title>
                 <DonutChart 
                     data={this.state.dataset}
                     category='count'
@@ -34,6 +36,16 @@ class OperatorWorkloadChartDonut extends React.Component {
                     marginTop='mt-6'
                     colors={["yellow", "violet", "indigo", "green", "cyan", "rose"]}
                 />
+                <Footer>
+                    <Link to='/operators/'>
+                      <ButtonInline
+                          size="sm"
+                          text="View details"
+                          icon={ RiIcons.RiArrowRightCircleFill }
+                          iconPosition="right"
+                      />
+                    </Link>
+                </Footer>
             </Card>
           )
     };

@@ -27,7 +27,7 @@ class ChartDonut extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://35.193.132.91:8000/services')
+        fetch('http://localhost:8000/services')
         .then(res => res.json())
         .then(
         json => {this.parseServices(json)}

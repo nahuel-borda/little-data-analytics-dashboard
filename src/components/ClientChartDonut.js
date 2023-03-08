@@ -3,48 +3,41 @@ import { Card, DonutChart, Title, Footer, ButtonInline } from '@tremor/react'
 import * as RiIcons from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-class ServiceStatusChartDonut extends React.Component {
-    
+class ClientChartDonut extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          statusCountDataset: []
+          dataset: []
         }
     }
-
-    parseStatusCountDataset(status_count) {
-        // Add each service status to the statusCountDataset object
-        let statusCountDatasetList = status_count
-        
-        // Update the state
-        this.setState(
-          { 
-            'statusCountDataset': statusCountDatasetList
-          }
-        );
-    }
-
+  
+  
     componentDidMount() {
-        fetch('http://localhost:8000/services/status_count/')
+        fetch('http://localhost:8000/clients/top_client_by_services/')
         .then(res => res.json())
         .then(
-        json => {this.parseStatusCountDataset(json)}
+          json => {this.setState(
+            { 
+              'dataset': json
+            }
+          );
+        }
         )
     }
-
+  
     render() {
         return (
             <Card>
-                <Title>Services by Status</Title>
+                <Title>Clients by Service</Title>
                 <DonutChart 
-                    data={this.state.statusCountDataset}
+                    data={this.state.dataset}
                     category='count'
                     dataKey='name'
                     marginTop='mt-6'
-                   i colors={["yellow", "violet", "indigo", "green", "cyan", "rose"]}
+                    colors={["yellow", "violet", "indigo", "green", "cyan", "rose"]}
                 />
                 <Footer>
-                    <Link to='/services/'>
+                    <Link to='/clients/'>
                       <ButtonInline
                           size="sm"
                           text="View details"
@@ -56,6 +49,6 @@ class ServiceStatusChartDonut extends React.Component {
             </Card>
           )
     };
-}
-
-export default ServiceStatusChartDonut
+  }
+  
+  export default ClientChartDonut

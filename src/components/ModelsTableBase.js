@@ -12,7 +12,7 @@ class ModelsTableBase extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://35.193.132.91:8000/model/')
+        fetch('http://localhost:8000/model/')
         .then(res => res.json())
         .then(
             json => {this.setState({ 'dataset': json });}
@@ -25,7 +25,7 @@ class ModelsTableBase extends React.Component {
     render() {
         return (
             <Card>
-                <Title>List of providers</Title>
+                <Title>List of models</Title>
 
                 <Table marginTop='mt-5'>
                     <TableHead>

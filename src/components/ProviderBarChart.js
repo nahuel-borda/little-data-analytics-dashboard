@@ -1,10 +1,10 @@
-import { Card, Title, LineChart } from "@tremor/react";
+import { Card, Title, BarChart } from "@tremor/react";
 import React from "react";
 
 const dataFormatter = (number: number) =>
   `${Intl.NumberFormat("us").format(number).toString()}`;
 
-class LineChartBox extends React.Component {
+class ProviderBarChartBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,7 +25,7 @@ class LineChartBox extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8000/services/status_count_by_date/')
+        fetch('http://localhost:8000/providers/provider_by_participation/')
         .then(res => res.json())
         .then(
             json => {this.parseServices(json)}
@@ -35,12 +35,12 @@ class LineChartBox extends React.Component {
     render() {
         return (
             <Card>
-                <Title>New services by date</Title>
-                <LineChart
+                <Title>Providers participation</Title>
+                <BarChart
                 data={this.state.dataset}
-                dataKey="date"
+                dataKey="name"
                 categories={["count"]}
-                colors={["blue"]}
+                colors={["violet"]}
                 valueFormatter={dataFormatter}  
                 marginTop="mt-6"         
                 yAxisWidth="w-10"
@@ -50,4 +50,4 @@ class LineChartBox extends React.Component {
     };
 }
 
-export default LineChartBox
+export default ProviderBarChartBox

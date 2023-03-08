@@ -1,5 +1,7 @@
 import React from 'react'
-import { Card, DonutChart, Title } from '@tremor/react'
+import { Card, DonutChart, Title, Footer, ButtonInline } from '@tremor/react'
+import * as RiIcons from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 class ProviderParticipationChartDonut extends React.Component {
     constructor(props) {
@@ -11,7 +13,7 @@ class ProviderParticipationChartDonut extends React.Component {
   
   
     componentDidMount() {
-        fetch('http://35.193.132.91:8000/providers/provider_by_participation/')
+        fetch('http://localhost:8000/providers/provider_by_participation/')
         .then(res => res.json())
         .then(
           json => {this.setState(
@@ -25,7 +27,7 @@ class ProviderParticipationChartDonut extends React.Component {
   
     render() {
         return (
-            <Card maxWidth="max-w-sm">
+            <Card>
                 <Title>Provider by Participation</Title>
                 <DonutChart 
                     data={this.state.dataset}
@@ -34,6 +36,16 @@ class ProviderParticipationChartDonut extends React.Component {
                     marginTop='mt-6'
                     colors={["yellow", "violet", "indigo", "green", "cyan", "rose"]}
                 />
+                <Footer>
+                    <Link to='/providers/'>
+                      <ButtonInline
+                          size="sm"
+                          text="View details"
+                          icon={ RiIcons.RiArrowRightCircleFill }
+                          iconPosition="right"
+                      />
+                    </Link>
+                </Footer>
             </Card>
           )
     };
