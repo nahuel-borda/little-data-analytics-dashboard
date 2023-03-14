@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Little Data Analytics Dashboard
+
+## Description
+
+A dashboard built using React.js and Django for data analysis. Currently it is serving data from a device repairing shop API, 
+                    displaying useful line charts, bar charts, donut charts, and data tables for entities such as providers, customers, operators, etc.
+                    It's currently running on GCP Free Tier.
+
+## installation
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
