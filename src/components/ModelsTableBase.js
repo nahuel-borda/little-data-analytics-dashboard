@@ -1,52 +1,40 @@
-//import {  } from '@heroicons/react/24/solid'
-import {Badge, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
-import React from 'react'
-//import data from '../data.json'
+import {Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
+import React from 'react';
+import { Block, ButtonInline } from '@tremor/react'
+import * as RiIcons from "react-icons/ri";
+import { Link } from "react-router-dom";
 
-class ModelsTableBase extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataset: [],
-        }
-    }
-
-    componentDidMount() {
-        fetch('http://localhost:8000/model/')
-        .then(res => res.json())
-        .then(
-            json => {this.setState({ 'dataset': json });}
-        )
-    }
-
-
+export const ModelsTableBase = (props) => {
     
+    return (
+        <Card>
+            <Link to='/dashboard'>
+                    <ButtonInline
+                        size="sm"
+                        text="Back to dashboard"
+                        icon={ RiIcons.RiArrowLeftCircleFill }
+                        iconPosition="left"
+                    />
+                </Link>  
+            <Title>List of models</Title>
 
-    render() {
-        return (
-            <Card>
-                <Title>List of models</Title>
-
-                <Table marginTop='mt-5'>
-                    <TableHead>
+            <Table marginTop='mt-5'>
+                <TableHead>
+                    <TableRow>
+                        <TableHeaderCell>ID</TableHeaderCell>
+                        <TableHeaderCell>Name</TableHeaderCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { props.dataset.map((item) => (
                         <TableRow>
-                            <TableHeaderCell>ID</TableHeaderCell>
-                            <TableHeaderCell>Name</TableHeaderCell>
+                            <TableCell> {item.id} </TableCell>
+                            <TableCell> {item.name}</TableCell>
                         </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        { this.state.dataset.map((item) => (
-                            <TableRow>
-                                <TableCell> {item.id} </TableCell>
-                                <TableCell> {item.name}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                    ))}
+                </TableBody>
+            </Table>
 
-            </Card>
-        )
-    }
+        </Card>
+    )
 }
-
-export default ModelsTableBase

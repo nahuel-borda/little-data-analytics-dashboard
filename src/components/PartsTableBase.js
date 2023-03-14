@@ -1,56 +1,42 @@
-//import {  } from '@heroicons/react/24/solid'
-import {Badge, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
-import React from 'react'
-//import data from '../data.json'
+import {Block, ButtonInline, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
+import React from 'react';
+import * as RiIcons from "react-icons/ri";
+import { Link } from "react-router-dom";
 
-class PartsTableBase extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataset: [],
-        }
-    }
+export const PartsTableBase = (props) => {
+    return (
+        <Card>
+            <Link to='/dashboard'>
+                    <ButtonInline
+                        size="sm"
+                        text="Back to dashboard"
+                        icon={ RiIcons.RiArrowLeftCircleFill }
+                        iconPosition="left"
+                    />
+                </Link>  
+            <Title>List of Parts</Title>
 
-    componentDidMount() {
-        fetch('http://localhost:8000/parts/')
-        .then(res => res.json())
-        .then(
-            json => {this.setState({ 'dataset': json });}
-        )
-    }
-
-
-    
-
-    render() {
-        return (
-            <Card>
-                <Title>List of Parts</Title>
-
-                <Table marginTop='mt-5'>
-                    <TableHead>
+            <Table marginTop='mt-5'>
+                <TableHead>
+                    <TableRow>
+                        <TableHeaderCell>ID</TableHeaderCell>
+                        <TableHeaderCell>Name</TableHeaderCell>
+                        <TableHeaderCell>Provider</TableHeaderCell>
+                        <TableHeaderCell>Brand</TableHeaderCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    { props.dataset.map((item) => (
                         <TableRow>
-                            <TableHeaderCell>ID</TableHeaderCell>
-                            <TableHeaderCell>Name</TableHeaderCell>
-                            <TableHeaderCell>Provider</TableHeaderCell>
-                            <TableHeaderCell>Brand</TableHeaderCell>
+                            <TableCell> {item.id} </TableCell>
+                            <TableCell> {item.name}</TableCell>
+                            <TableCell> {item.provider?.name} </TableCell>
+                            <TableCell> {item.brand?.name} </TableCell>
                         </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        { this.state.dataset.map((item) => (
-                            <TableRow>
-                                <TableCell> {item.id} </TableCell>
-                                <TableCell> {item.name}</TableCell>
-                                <TableCell> {item.provider?.name} </TableCell>
-                                <TableCell> {item.brand?.name} </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                    ))}
+                </TableBody>
+            </Table>
 
-            </Card>
-        )
-    }
+        </Card>
+    )
 }
-
-export default PartsTableBase

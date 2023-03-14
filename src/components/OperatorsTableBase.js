@@ -1,30 +1,22 @@
-//import {  } from '@heroicons/react/24/solid'
-import {Badge, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
-import React from 'react'
-//import data from '../data.json'
+import {Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
+import React from 'react';
+import { Block, ButtonInline } from '@tremor/react'
+import * as RiIcons from "react-icons/ri";
+import { Link } from "react-router-dom";
 
-class OperatorsTableBase extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataset: [],
-        }
-    }
+export const OperatorsTableBase = (props) => {
 
-    componentDidMount() {
-        fetch('http://localhost:8000/operators/')
-        .then(res => res.json())
-        .then(
-            json => {this.setState({ 'dataset': json });}
-        )
-    }
-
-
-    
-
-    render() {
         return (
+            <>
             <Card>
+                <Link to='/dashboard'>
+                    <ButtonInline
+                        size="sm"
+                        text="Back to dashboard"
+                        icon={ RiIcons.RiArrowLeftCircleFill }
+                        iconPosition="left"
+                    />
+                </Link>  
                 <Title>List of operators</Title>
 
                 <Table marginTop='mt-5'>
@@ -38,7 +30,7 @@ class OperatorsTableBase extends React.Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        { this.state.dataset.map((item) => (
+                        { props.dataset.map((item) => (
                             <TableRow>
                                 <TableCell> {item.id} </TableCell>
                                 <TableCell> {item.firstname} {item.lastname}</TableCell>
@@ -49,10 +41,7 @@ class OperatorsTableBase extends React.Component {
                         ))}
                     </TableBody>
                 </Table>
-
             </Card>
+            </>
         )
-    }
 }
-
-export default OperatorsTableBase

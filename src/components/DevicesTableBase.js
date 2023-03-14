@@ -1,58 +1,47 @@
-//import {  } from '@heroicons/react/24/solid'
-import {Badge, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
-import React from 'react'
-//import data from '../data.json'
+import { Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
+import React from 'react';
+import { Block, ButtonInline } from '@tremor/react'
+import * as RiIcons from "react-icons/ri";
+import { Link } from "react-router-dom";
 
-class DevicesTableBase extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataset: [],
-        }
-    }
+export const DevicesTableBase = (props) => {
 
-    componentDidMount() {
-        fetch('http://localhost:8000/devices/')
-        .then(res => res.json())
-        .then(
-            json => {this.setState({ 'dataset': json });}
-        )
-    }
+    return (
+        <Card>
+            <Link to='/dashboard'>
+                    <ButtonInline
+                        size="sm"
+                        text="Back to dashboard"
+                        icon={ RiIcons.RiArrowLeftCircleFill }
+                        iconPosition="left"
+                    />
+                </Link>  
+            <Title>List of devices</Title>
 
-
-    
-
-    render() {
-        return (
-            <Card>
-                <Title>List of devices</Title>
-
-                <Table marginTop='mt-5'>
-                    <TableHead>
+            <Table marginTop='mt-5'>
+                <TableHead>
+                    <TableRow>
+                        <TableHeaderCell>ID</TableHeaderCell>
+                        <TableHeaderCell>Patent</TableHeaderCell>
+                        <TableHeaderCell>Model</TableHeaderCell>
+                        <TableHeaderCell>Brand</TableHeaderCell>
+                        <TableHeaderCell>Client</TableHeaderCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {
+                    props.dataset.map((item) => (
                         <TableRow>
-                            <TableHeaderCell>ID</TableHeaderCell>
-                            <TableHeaderCell>Patent</TableHeaderCell>
-                            <TableHeaderCell>Model</TableHeaderCell>
-                            <TableHeaderCell>Brand</TableHeaderCell>
-                            <TableHeaderCell>Client</TableHeaderCell>
+                            <TableCell> {item.id} </TableCell>
+                            <TableCell> {item.patent}</TableCell>
+                            <TableCell> {item.model.name} </TableCell>
+                            <TableCell> {item.brand.name} </TableCell>
+                            <TableCell> {item.client.firstname} {item.client.lastname} </TableCell>
                         </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        { this.state.dataset.map((item) => (
-                            <TableRow>
-                                <TableCell> {item.id} </TableCell>
-                                <TableCell> {item.patent}</TableCell>
-                                <TableCell> {item.model.name} </TableCell>
-                                <TableCell> {item.brand.name} </TableCell>
-                                <TableCell> {item.client.firstname} {item.client.lastname} </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                    ))}
+                </TableBody>
+            </Table>
+        </Card>
 
-            </Card>
-        )
-    }
+    )
 }
-
-export default DevicesTableBase

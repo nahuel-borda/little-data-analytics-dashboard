@@ -6,50 +6,20 @@ const dataFormatter = (number: number) => {
   return "$ " + Intl.NumberFormat("us").format(number).toString();
 };
 
-class ChartDonut extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          servicesDataset: []
-        }
-    }
+export const ChartDonut = (props) => {
 
-    parseServices(services) {
-        // Add each service status to the statusCountDataset object
-        let servicesDatasetList = services
-        
-        // Update the state
-        this.setState(
-          { 
-            'servicesDataset': servicesDatasetList
-          }
-        );
-    }
-
-    componentDidMount() {
-        fetch('http://localhost:8000/services')
-        .then(res => res.json())
-        .then(
-        json => {this.parseServices(json)}
-        )
-    }
-
-    render() {
-        return (
-            <Card>
-                <Title>Newsletter revenue over time (USD)</Title>
-                <AreaChart
-                    data={this.state.services}
-                    categories={["SemiAnalysis", "The Pragmatic Engineer"]}
-                    dataKey="date"
-                    height="h-72"
-                    colors={["indigo", "cyan"]}
-                    valueFormatter={dataFormatter}
-                    marginTop="mt-4"
-                />
-            </Card>
-          )
-    };
+    return (
+        <Card>
+            <Title>Newsletter revenue over time (USD)</Title>
+            <AreaChart
+                data={props.dataset}
+                categories={["SemiAnalysis", "The Pragmatic Engineer"]}
+                dataKey="date"
+                height="h-72"
+                colors={["indigo", "cyan"]}
+                valueFormatter={dataFormatter}
+                marginTop="mt-4"
+            />
+        </Card>
+    )
 }
-
-export default ChartDonut

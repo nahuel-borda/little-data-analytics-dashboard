@@ -53,3 +53,10 @@
   margin-left: 260px;
   font-size: 2rem;
 }
+
+.sweet-loading {
+  align-content: center;
+  margin-left: 50%;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
