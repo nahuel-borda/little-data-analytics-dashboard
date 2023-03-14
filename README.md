@@ -6,7 +6,7 @@ A dashboard built using React.js and Django for data analysis. Currently it is s
                     displaying useful line charts, bar charts, donut charts, and data tables for entities such as providers, customers, operators, etc.
                     
 
-## installation
+## Installation
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
