@@ -4,7 +4,7 @@ import { ChartsDataset, ClientsDataset, APIResponse } from './interfaces/interfa
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export function GetClientsAPI() : Promise<APIResponse> {
-    return axios.get('http://localhost:8000/clients/')
+    return axios.get(`${ apiUrl }clients/`)
     .then((response) => {
       if (response.status !== 200) {
         throw new Error(`Request failed with status code ${response.status}`);
@@ -22,7 +22,7 @@ export function GetClientsAPI() : Promise<APIResponse> {
 }
 
 export function GetClientsByServicesAPI() : Promise<APIResponse> {
-  return axios.get('http://localhost:8000/clients/client_by_services/')
+  return axios.get(`${ apiUrl }clients/client_by_services/`)
   .then((response) => {
     if (response.status !== 200) {
       throw new Error(`Request failed with status code ${response.status}`);
@@ -40,7 +40,7 @@ export function GetClientsByServicesAPI() : Promise<APIResponse> {
 }
 
 export function GetTopClientsByServicesAPI() : Promise<APIResponse> {
-  return axios.get('http://localhost:8000/clients/top_client_by_services/')
+  return axios.get(`${ apiUrl }clients/top_client_by_services/`)
   .then((response) => {
     if (response.status !== 200) {
       throw new Error(`Request failed with status code ${response.status}`);

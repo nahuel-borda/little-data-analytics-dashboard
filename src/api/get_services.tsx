@@ -4,7 +4,7 @@ import { ChartsDataset, ServicesDataset, APIResponse } from './interfaces/interf
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export function GetServicesAPI () : Promise<APIResponse> {
-    return axios.get('http://localhost:8000/services/')
+    return axios.get(`${apiUrl}services/`)
     .then((response) => {
       if (response.status !== 200) {
         throw new Error(`Request failed with status code ${response.status}`);
@@ -22,7 +22,7 @@ export function GetServicesAPI () : Promise<APIResponse> {
 }
 
 export function GetServicesByStatusAPI () : Promise<APIResponse> {
-  return axios.get('http://localhost:8000/services/status_count/')
+  return axios.get(`${apiUrl}services/status_count/`)
   .then((response) => {
     if (response.status !== 200) {
       throw new Error(`Request failed with status code ${response.status}`);
@@ -40,7 +40,7 @@ export function GetServicesByStatusAPI () : Promise<APIResponse> {
 }
 
 export function GetNewServicesCountByDateByAPI () : Promise<APIResponse> {
-  return axios.get('http://localhost:8000/services/service_ingress_count_by_date/')
+  return axios.get(`${apiUrl}services/service_ingress_count_by_date/`)
   .then((response) => {
     if (response.status !== 200) {
       throw new Error(`Request failed with status code ${response.status}`);
@@ -58,7 +58,7 @@ export function GetNewServicesCountByDateByAPI () : Promise<APIResponse> {
 }
 
 export function GetServicesStatusCountbyDateAPI () : Promise<APIResponse> {
-  return axios.get('http://localhost:8000/services/status_count_by_date/')
+  return axios.get(`${apiUrl}services/status_count_by_date/`)
   .then((response) => {
     if (response.status !== 200) {
       throw new Error(`Request failed with status code ${response.status}`);

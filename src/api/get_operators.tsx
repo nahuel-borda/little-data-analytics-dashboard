@@ -4,7 +4,7 @@ import { OperatorDataset, ChartsDataset, APIResponse } from './interfaces/interf
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export function GetOperatorsAPI () : Promise<APIResponse> {
-    return axios.get('http://localhost:8000/operators/')
+    return axios.get(`${apiUrl}operators/`)
     .then((response) => {
       if (response.status !== 200) {
         throw new Error(`Request failed with status code ${response.status}`);
@@ -22,7 +22,7 @@ export function GetOperatorsAPI () : Promise<APIResponse> {
 }
 
 export function GetOperatorsChartsAPI () : Promise<APIResponse> {
-    return axios.get('http://localhost:8000/operators/operator_by_workload/')
+    return axios.get(`${apiUrl}operators/operator_by_workload/`)
     .then((response) => {
       if (response.status !== 200) {
         throw new Error(`Request failed with status code ${response.status}`);
@@ -40,7 +40,7 @@ export function GetOperatorsChartsAPI () : Promise<APIResponse> {
 }
 
 export function GetTopOperatorsChartsAPI () : Promise<APIResponse> {
-  return axios.get('http://localhost:8000/operators/top_operator_by_workload/')
+  return axios.get(`${apiUrl}operators/top_operator_by_workload/`)
   .then((response) => {
     if (response.status !== 200) {
       throw new Error(`Request failed with status code ${response.status}`);

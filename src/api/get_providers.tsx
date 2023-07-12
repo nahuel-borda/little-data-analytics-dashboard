@@ -4,7 +4,7 @@ import { ChartsDataset, ProvidersDataset, APIResponse } from './interfaces/inter
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export function GetProvidersAPI() : Promise<APIResponse> {
-    return axios.get('http://localhost:8000/providers/')
+    return axios.get(`${apiUrl}providers/`)
     .then((response) => {
       if (response.status !== 200) {
         throw new Error(`Request failed with status code ${response.status}`);
@@ -22,7 +22,7 @@ export function GetProvidersAPI() : Promise<APIResponse> {
 }
 
 export function GetProvidersByParticipationAPI() : Promise<APIResponse> {
-  return axios.get('http://localhost:8000/providers/provider_by_participation/')
+  return axios.get(`${apiUrl}providers/provider_by_participation/`)
   .then((response) => {
     if (response.status !== 200) {
       throw new Error(`Request failed with status code ${response.status}`);
@@ -40,7 +40,7 @@ export function GetProvidersByParticipationAPI() : Promise<APIResponse> {
 }
 
 export function GetTopProvidersByParticipationAPI() : Promise<APIResponse> {
-  return axios.get('http://localhost:8000/providers/top_provider_by_participation/')
+  return axios.get(`${apiUrl}providers/top_provider_by_participation/`)
   .then((response) => {
     if (response.status !== 200) {
       throw new Error(`Request failed with status code ${response.status}`);
