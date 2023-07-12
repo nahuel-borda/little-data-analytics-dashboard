@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { ModelsDataset, APIResponse } from './interfaces/interfaces';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export function GetModelsAPI () : Promise<APIResponse> {
     return axios.get('http://localhost:8000/model/')
     .then((response) => {

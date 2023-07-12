@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { ChartsDataset, ProvidersDataset, APIResponse } from './interfaces/interfaces';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export function GetProvidersAPI() : Promise<APIResponse> {
     return axios.get('http://localhost:8000/providers/')
     .then((response) => {

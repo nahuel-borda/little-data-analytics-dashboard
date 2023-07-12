@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { BrandsDataset, APIResponse} from './interfaces/interfaces';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export function GetBrandsAPI () : Promise<APIResponse> {
     return axios.get('http://localhost:8000/brand/')
     .then((response) => {
