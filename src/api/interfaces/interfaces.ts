@@ -106,5 +106,7 @@ export interface DashboardDataset {
     top_operators_by_status?: ChartsDataset,
     providers_by_participation?: ChartsDataset,
     top_providers_by_participation?: ChartsDataset,
+    status: number,
+    data?: any
 }
 
