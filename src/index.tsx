@@ -12,9 +12,7 @@ const root_html = document.getElementById('root')
 if (root_html) {
     const root = ReactDOM.createRoot(root_html);
     root.render(  
-        
         <App />
-        
     );
 }
 

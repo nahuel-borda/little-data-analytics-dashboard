@@ -24,7 +24,7 @@ export const DashboardBase = (props:any) => {
 
     const getViewFromQueryParam = () => {
         const params = new URLSearchParams(location.search);
-        const view = params.get("view");
+        const view = params.get("view") ? params.get("view") : 1;
         return Number(view);
     }
 
