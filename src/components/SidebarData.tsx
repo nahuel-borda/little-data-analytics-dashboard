@@ -1,9 +1,8 @@
-import React from "react";
-import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
+import * as FaIcons from "react-icons/fa";
 import * as IoIcons from "react-icons/io";
 import * as RiIcons from "react-icons/ri";
- 
+
 export type SidebarItem = {
   title: string;
   path: string;
@@ -21,16 +20,16 @@ export const SidebarData = [
     icon: <AiIcons.AiFillHome />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
-    
+
   },
   {
     title: "Workshop",
     path: "/services",
     icon: <FaIcons.FaList />,
- 
+
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
- 
+
     subNav: [
       {
         title: "Services",
@@ -63,10 +62,10 @@ export const SidebarData = [
     title: "People",
     path: "/clients",
     icon: <FaIcons.FaList />,
- 
+
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
- 
+
     subNav: [
       {
         title: "Operators",
@@ -95,5 +94,5 @@ export const SidebarData = [
     path: "/support",
     icon: <IoIcons.IoMdHelpCircle />,
   },
-  
+
 ];

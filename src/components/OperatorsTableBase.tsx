@@ -1,22 +1,20 @@
-import {Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
-import React from 'react';
-import { Block, ButtonInline } from '@tremor/react'
+import { ButtonInline, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react';
 import * as RiIcons from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-export const OperatorsTableBase = (props:any) => {
+export const OperatorsTableBase = (props: any) => {
 
-        return (
-            <>
+    return (
+        <>
             <Card>
                 <Link to='/dashboard'>
                     <ButtonInline
                         size="sm"
                         text="Back to dashboard"
-                        icon={ RiIcons.RiArrowLeftCircleFill }
+                        icon={RiIcons.RiArrowLeftCircleFill}
                         iconPosition="left"
                     />
-                </Link>  
+                </Link>
                 <Title>List of operators</Title>
 
                 <Table marginTop='mt-5'>
@@ -30,7 +28,7 @@ export const OperatorsTableBase = (props:any) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        { props.dataset.map((item:any) => (
+                        {!props.loading && props.dataset.operators && props.dataset.operators.map((item: any) => (
                             <TableRow>
                                 <TableCell> {item.id} </TableCell>
                                 <TableCell> {item.firstname} {item.lastname}</TableCell>
@@ -42,6 +40,6 @@ export const OperatorsTableBase = (props:any) => {
                     </TableBody>
                 </Table>
             </Card>
-            </>
-        )
+        </>
+    )
 }

@@ -51,7 +51,7 @@ export interface Operator extends Item {
 
 export interface Service extends Item {
     operator?: Operator,
-    ingress_date : string,
+    ingress_date: string,
     start_date: string,
     end_date: string,
     description: string,
@@ -59,29 +59,29 @@ export interface Service extends Item {
     status: string,
 }
 
-export interface ChartItem{
+export interface ChartItem {
     data?: string,
     date?: string,
     count: number,
 }
 
-export interface DevicesDataset extends Array<Device> {}
+export interface DevicesDataset extends Array<Device> { }
 
-export interface ClientsDataset extends Array<Client> {}
+export interface ClientsDataset extends Array<Client> { }
 
-export interface BrandsDataset extends Array<Brand> {}
+export interface BrandsDataset extends Array<Brand> { }
 
-export interface ModelsDataset extends Array<Model> {}
+export interface ModelsDataset extends Array<Model> { }
 
-export interface ProvidersDataset extends Array<Provider> {}
+export interface ProvidersDataset extends Array<Provider> { }
 
-export interface OperatorDataset extends Array<Operator> {}
+export interface OperatorDataset extends Array<Operator> { }
 
-export interface PartsDataset extends Array<Part> {}
+export interface PartsDataset extends Array<Part> { }
 
-export interface ServicesDataset extends Array<Service> {}
+export interface ServicesDataset extends Array<Service> { }
 
-export interface ChartsDataset extends Array<ChartItem> {}
+export interface ChartsDataset extends Array<ChartItem> { }
 
 export interface APIResponse {
     key: string,
@@ -106,7 +106,7 @@ export interface DashboardDataset {
     top_operators_by_status?: ChartsDataset,
     providers_by_participation?: ChartsDataset,
     top_providers_by_participation?: ChartsDataset,
-    status: number,
+    status?: number,
     data?: any
 }
 

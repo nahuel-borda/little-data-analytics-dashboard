@@ -1,5 +1,4 @@
-import { Card, Metric, Text, Flex, ProgressBar } from '@tremor/react'
-import React from 'react'
+import { Card, Flex, Metric, ProgressBar, Text } from '@tremor/react'
 
 const CardBase = () => {
   return (

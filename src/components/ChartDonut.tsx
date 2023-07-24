@@ -1,13 +1,12 @@
-import React from 'react'
-import { Card, DonutChart, Title, Footer, ButtonInline } from '@tremor/react'
+import { ButtonInline, Card, DonutChart, Footer, Title } from '@tremor/react';
 import * as RiIcons from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-export const ServiceStatusChartDonut = (props:any) => {
+export const ServiceStatusChartDonut = (props: any) => {
     return (
         <Card>
             <Title>Services by Status</Title>
-            <DonutChart 
+            <DonutChart
                 data={props.dataset}
                 category='count'
                 dataKey='name'
@@ -16,14 +15,14 @@ export const ServiceStatusChartDonut = (props:any) => {
             />
             <Footer>
                 <Link to='/services/'>
-                  <ButtonInline
-                      size="sm"
-                      text="View details"
-                      icon={ RiIcons.RiArrowRightCircleFill }
-                      iconPosition="right"
-                  />
+                    <ButtonInline
+                        size="sm"
+                        text="View details"
+                        icon={RiIcons.RiArrowRightCircleFill}
+                        iconPosition="right"
+                    />
                 </Link>
             </Footer>
         </Card>
-      )
+    )
 }

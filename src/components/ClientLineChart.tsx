@@ -1,4 +1,4 @@
-import { Card, Title, BarChart } from "@tremor/react";
+import { BarChart, Card, Title } from "@tremor/react";
 import React from "react";
 
 
@@ -6,9 +6,9 @@ const dataFormatter = (number: number) =>
   `${Intl.NumberFormat("us").format(number).toString()}`;
 
 export const ClientLineChartBox = (props: any) => {
-  
+
   const memoizedComponent = React.useMemo(() => (
-    
+
     <Card>
       <Title>Clients services</Title>
       <BarChart

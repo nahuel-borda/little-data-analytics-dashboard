@@ -1,3 +1,24 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib"
-}
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "prettier.requireConfig": true,
+    "prettier.disableLanguages": ["javascript"],
+    "prettier.disableLanguages": ["javascriptreact"],
+    
+    "emmet.includeLanguages": {
+      "javascript": "javascriptreact",
+      "typescript": "typescriptreact"
+    },
+    "emmet.syntaxProfiles": {
+      "javascript": "jsx",
+      "typescript": "typescriptreact"
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.preferences.importModuleSpecifier": "relative"
+  }

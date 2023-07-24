@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import * as FaIcons from "react-icons/fa";
+import { useState } from "react";
 import * as AiIcons from "react-icons/ai";
-import { SidebarData,SidebarItem } from "./SidebarData";
-import SubMenu from "./SubMenu";
+import * as FaIcons from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { SidebarData, SidebarItem } from "./SidebarData";
+import SubMenu from "./SubMenu";
 
 
 
@@ -43,7 +43,7 @@ const SidebarWrap = styled.div`
     width: 100%;
 `;
 
-const Sidebar = (darkMode) => {
+export const Sidebar = () => {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
@@ -51,28 +51,27 @@ const Sidebar = (darkMode) => {
         <>
             <IconContext.Provider value={{ color: "#fff" }}>
                 <Nav>
-                <NavIcon to="#">
-                    <FaIcons.FaBars onClick={showSidebar} />
-                    
-                </NavIcon>
-                <h1
-                    style={{ 
-                        textAlign: "center",
-                        marginLeft: "200px",
-                        color: "#e5e7eb",
-                        fontSize: "medium", 
-                        display: "none"
-                    }}
-                >
-                    Workshop Dashboard
-                </h1>
+                    <NavIcon to="#">
+                        <FaIcons.FaBars onClick={showSidebar} />
+                    </NavIcon>
+                    <h1
+                        style={{
+                            textAlign: "center",
+                            marginLeft: "200px",
+                            color: "#e5e7eb",
+                            fontSize: "medium",
+                            display: "none"
+                        }}
+                    >
+                        Workshop Dashboard
+                    </h1>
                 </Nav>
                 <SidebarNav sidebar={sidebar}>
                     <SidebarWrap>
                         <NavIcon to="#">
                             <AiIcons.AiOutlineClose onClick={showSidebar} />
                         </NavIcon>
-                        {SidebarData.map((item:SidebarItem) => (
+                        {SidebarData.map((item: SidebarItem) => (
                             <SubMenu item={item} key={item.title} />
                         ))}
                     </SidebarWrap>
@@ -81,5 +80,3 @@ const Sidebar = (darkMode) => {
         </>
     );
 };
-
-export default Sidebar;

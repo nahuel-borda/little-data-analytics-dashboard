@@ -1,21 +1,20 @@
 //import {  } from '@heroicons/react/24/solid'
-import {ButtonInline, Badge, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react'
-import React from 'react'
-import { Link } from "react-router-dom";
+import { Button, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Title } from '@tremor/react';
 import * as RiIcons from "react-icons/ri";
+import { Link } from "react-router-dom";
 
-export const BrandsTableBase = (props:any) => {
-    
+export const BrandsTableBase = (props: any) => {
+
     return (
         <Card>
             <Link to='/dashboard'>
-                    <ButtonInline
-                        size="sm"
-                        text="Back to dashboard"
-                        icon={ RiIcons.RiArrowLeftCircleFill }
-                        iconPosition="left"
-                    />
-                </Link>  
+                <Button variant='light'
+                    size="sm"
+                    text="Back to dashboard"
+                    icon={RiIcons.RiArrowLeftCircleFill}
+                    iconPosition="left"
+                />
+            </Link>
             <Title>List of brands</Title>
 
             <Table marginTop='mt-5'>
@@ -23,11 +22,11 @@ export const BrandsTableBase = (props:any) => {
                     <TableRow>
                         <TableHeaderCell>ID</TableHeaderCell>
                         <TableHeaderCell>Name</TableHeaderCell>
-                        
+
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    { props.dataset.map((item:any) => (
+                    {!props.loading && props.dataset.brands && props.dataset.brands.map((item: any) => (
                         <TableRow>
                             <TableCell> {item.id} </TableCell>
                             <TableCell> {item.name}</TableCell>
@@ -39,5 +38,3 @@ export const BrandsTableBase = (props:any) => {
         </Card>
     )
 }
-
-export default BrandsTableBase

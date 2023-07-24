@@ -1,27 +1,29 @@
 import './App.css';
 import './index.css';
-import Login from "./pages/Login";
-import Sidebar from "./components/Sidebar";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Services from "./pages/Services";
-import {Devices} from "./pages/Devices";
-import Providers from "./pages/Providers";
-import Parts from "./pages/Parts";
-import Brands from "./pages/Brands";
-import {Models} from "./pages/Models";
-import Clients from "./pages/Clients";
-import Operators from "./pages/Operators";
-import AboutUs from "./pages/AboutUs";
-import Support from "./pages/Support";
-import { GetDashboardAPI } from './api/get_dashboard'
-import React, { useEffect } from 'react'
+
+import React, { useEffect } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+
+import { GetDashboardAPI } from './api/get_dashboard';
+import { DashboardDataset } from './api/interfaces/interfaces';
+import { BrandsTableBase } from './components/BrandsTableBase';
+import { ClientsTableBase } from './components/ClientsTableBase';
 import { DashboardBase } from './components/DashboardBase';
-import {Container, Row, Col} from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { DevicesTableBase } from './components/DevicesTableBase';
+import { ModelsTableBase } from './components/ModelsTableBase';
+import { OperatorsTableBase } from './components/OperatorsTableBase';
+import { PartsTableBase } from './components/PartsTableBase';
+import { ProvidersTableBase } from './components/ProvidersTableBase';
+import { ServicesTableBase } from './components/ServicesTableBase';
+import { Sidebar } from "./components/Sidebar";
+import { AboutUs } from "./pages/AboutUs";
+import { Login } from './pages/Login';
+import { Page } from './pages/Page';
+import { Support } from "./pages/Support";
 
-
-function SidebarWrapper(page_content:any) {
-  return(
+function SidebarWrapper(page_content: any) {
+  return (
     <>
       <Sidebar />
       <Container className="h-100" fluid="md">
@@ -32,10 +34,14 @@ function SidebarWrapper(page_content:any) {
     </>
   );
 }
+type Data = {
+  dataset: DashboardDataset;
+};
 
 function App() {
-  const [data, setData] = React.useState({});
+  const [data, setData] = React.useState<Data>({ dataset: {} });
   const [loading, setLoading] = React.useState(true);
+
 
   useEffect(() => {
     GetDashboardAPI().then((response) => {
@@ -47,30 +53,27 @@ function App() {
     })
       .catch((err) => {
         throw err;
-    });
+      });
   }, [])
 
-  const memoizedData = React.useMemo(() => data, [data]);
-  const memoizedLoading = React.useMemo(() => loading, [loading]);
-  
   return (
     <Router>
       <Routes>
-        <Route path='/' element={SidebarWrapper(<DashboardBase dataset={memoizedData} loading={memoizedLoading}/>)/*<Login/>*/} />
-        <Route path='/dashboard' element={SidebarWrapper(<DashboardBase dataset={memoizedData} loading={memoizedLoading}/>)} />
-        <Route path='/services' element={SidebarWrapper(<Services dataset={memoizedData} loading={memoizedLoading}/>)} />
-        <Route path='/devices' element={SidebarWrapper(<Devices dataset={memoizedData} loading={memoizedLoading}/>)} />
-        <Route path='/parts' element={SidebarWrapper(<Parts dataset={memoizedData} loading={memoizedLoading}/>)} />
-        <Route path='/brands' element={SidebarWrapper(<Brands dataset={memoizedData} loading={memoizedLoading}/>)} />
-        <Route path='/models' element={SidebarWrapper(<Models dataset={memoizedData} loading={memoizedLoading}/>)} />
-        <Route path='/providers' element={SidebarWrapper(<Providers dataset={memoizedData} loading={memoizedLoading}/>)} />
-        <Route path='/clients' element={SidebarWrapper(<Clients dataset={memoizedData} loading={memoizedLoading}/>)} />
-        <Route path='/operators' element={SidebarWrapper(<Operators dataset={memoizedData} loading={memoizedLoading}/>)} />
-        <Route path='/about-us' element={<AboutUs/>} />
-        <Route path='/support' element={<Support/>} />
+        <Route path='/' element={(<Login />)} />
+        <Route path='/dashboard' element={SidebarWrapper(<DashboardBase dataset={data} loading={loading} />)} />
+        <Route path='/services' element={SidebarWrapper(<Page dataset={data} loading={loading} component={ServicesTableBase} />)} />
+        <Route path='/devices' element={SidebarWrapper(<Page dataset={data} loading={loading} component={DevicesTableBase} />)} />
+        <Route path='/parts' element={SidebarWrapper(<Page dataset={data} loading={loading} component={PartsTableBase} />)} />
+        <Route path='/brands' element={SidebarWrapper(<Page dataset={data} loading={loading} component={BrandsTableBase} />)} />
+        <Route path='/models' element={SidebarWrapper(<Page dataset={data} loading={loading} component={ModelsTableBase} />)} />
+        <Route path='/providers' element={SidebarWrapper(<Page dataset={data} loading={loading} component={ProvidersTableBase} />)} />
+        <Route path='/clients' element={SidebarWrapper(<Page dataset={data} loading={loading} component={ClientsTableBase} />)} />
+        <Route path='/operators' element={SidebarWrapper(<Page dataset={data} loading={loading} component={OperatorsTableBase} />)} />
+        <Route path='/about-us' element={<AboutUs />} />
+        <Route path='/support' element={<Support />} />
       </Routes>
     </Router>
   );
 }
-   
+
 export default App;

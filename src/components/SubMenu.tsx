@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { SidebarItem } from "./SidebarData";
@@ -44,39 +44,39 @@ const DropdownLink = styled(Link)`
 `;
 
 type SubMenuProps = {
-    item: SidebarItem; // Make sure to import SidebarItem from SidebarData.ts or the correct path
-  };
+    item: SidebarItem;
+};
 
-const SubMenu = ({item}:SubMenuProps, key:any) => {
+const SubMenu = ({ item }: SubMenuProps, key: any) => {
     const [subnav, setSubnav] = useState(false);
     const showSubnav = () => setSubnav(!subnav);
 
     return (
         <>
-        <SidebarLink to={item.path}
-        onClick={item.subNav && showSubnav}>
-            <LinkWrapper>
-            {item.icon}
-            
-            <SidebarLabel>{item.title}</SidebarLabel>
-            </LinkWrapper>
-            <LinkWrapper>
-            {item.subNav && subnav
-                ? item.iconOpened
-                : item.subNav
-                ? item.iconClosed
-                : null}
-            </LinkWrapper>
-        </SidebarLink>
-        {subnav &&
-            item.subNav?.map((subItem:any) => (
-                <DropdownLink to={subItem.path} key={subItem.title}>
-                    {subItem.icon}
-                <SidebarLabel>{subItem.title}</SidebarLabel>
-                </DropdownLink>
-            
-            ))
-        }
+            <SidebarLink to={item.path}
+                onClick={item.subNav && showSubnav}>
+                <LinkWrapper>
+                    {item.icon}
+
+                    <SidebarLabel>{item.title}</SidebarLabel>
+                </LinkWrapper>
+                <LinkWrapper>
+                    {item.subNav && subnav
+                        ? item.iconOpened
+                        : item.subNav
+                            ? item.iconClosed
+                            : null}
+                </LinkWrapper>
+            </SidebarLink>
+            {subnav &&
+                item.subNav?.map((subItem: any) => (
+                    <DropdownLink to={subItem.path} key={subItem.title}>
+                        {subItem.icon}
+                        <SidebarLabel>{subItem.title}</SidebarLabel>
+                    </DropdownLink>
+
+                ))
+            }
         </>
     );
 };

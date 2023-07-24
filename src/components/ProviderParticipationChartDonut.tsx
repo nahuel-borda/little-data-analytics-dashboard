@@ -1,5 +1,4 @@
-import React from 'react'
-import { Card, DonutChart, Title, Footer, ButtonInline } from '@tremor/react'
+import { ButtonInline, Card, DonutChart, Footer, Title } from '@tremor/react';
 import * as RiIcons from "react-icons/ri";
 import { Link } from "react-router-dom";
 

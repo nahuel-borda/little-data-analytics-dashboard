@@ -1,9 +1,8 @@
-import { Card, Title, AreaChart } from "@tremor/react";
-import React from "react";
+import { AreaChart, Card, Title } from "@tremor/react";
 
 
 const dataFormatter = (number: number) => {
-  return "$ " + Intl.NumberFormat("us").format(number).toString();
+    return "$ " + Intl.NumberFormat("us").format(number).toString();
 };
 
 export const ChartDonut = (props: any) => {
