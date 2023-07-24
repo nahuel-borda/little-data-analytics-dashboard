@@ -17,9 +17,9 @@ import { PartsTableBase } from './components/PartsTableBase';
 import { ProvidersTableBase } from './components/ProvidersTableBase';
 import { ServicesTableBase } from './components/ServicesTableBase';
 import { Sidebar } from "./components/Sidebar";
+import { withPage } from './components/withPage';
 import { AboutUs } from "./pages/AboutUs";
 import { Login } from './pages/Login';
-import { Page } from './pages/Page';
 import { Support } from "./pages/Support";
 
 function SidebarWrapper(page_content: any) {
@@ -56,19 +56,28 @@ function App() {
       });
   }, [])
 
+  const ServicesPage = withPage(ServicesTableBase);
+  const DevicesPage = withPage(DevicesTableBase);
+  const PartsPage = withPage(PartsTableBase);
+  const BrandsPage = withPage(BrandsTableBase);
+  const ModelsPage = withPage(ModelsTableBase);
+  const ProvidersPage = withPage(ProvidersTableBase);
+  const ClientsPage = withPage(ClientsTableBase);
+  const OperatorsPage = withPage(OperatorsTableBase);
+
   return (
     <Router>
       <Routes>
         <Route path='/' element={(<Login />)} />
         <Route path='/dashboard' element={SidebarWrapper(<DashboardBase dataset={data} loading={loading} />)} />
-        <Route path='/services' element={SidebarWrapper(<Page dataset={data} loading={loading} component={ServicesTableBase} />)} />
-        <Route path='/devices' element={SidebarWrapper(<Page dataset={data} loading={loading} component={DevicesTableBase} />)} />
-        <Route path='/parts' element={SidebarWrapper(<Page dataset={data} loading={loading} component={PartsTableBase} />)} />
-        <Route path='/brands' element={SidebarWrapper(<Page dataset={data} loading={loading} component={BrandsTableBase} />)} />
-        <Route path='/models' element={SidebarWrapper(<Page dataset={data} loading={loading} component={ModelsTableBase} />)} />
-        <Route path='/providers' element={SidebarWrapper(<Page dataset={data} loading={loading} component={ProvidersTableBase} />)} />
-        <Route path='/clients' element={SidebarWrapper(<Page dataset={data} loading={loading} component={ClientsTableBase} />)} />
-        <Route path='/operators' element={SidebarWrapper(<Page dataset={data} loading={loading} component={OperatorsTableBase} />)} />
+        <Route path='/services' element={SidebarWrapper(<ServicesPage dataset={data} loading={loading} />)} />
+        <Route path='/devices' element={SidebarWrapper(<DevicesPage dataset={data} loading={loading} />)} />
+        <Route path='/parts' element={SidebarWrapper(<PartsPage dataset={data} loading={loading} />)} />
+        <Route path='/brands' element={SidebarWrapper(<BrandsPage dataset={data} loading={loading} />)} />
+        <Route path='/models' element={SidebarWrapper(<ModelsPage dataset={data} loading={loading} />)} />
+        <Route path='/providers' element={SidebarWrapper(<ProvidersPage dataset={data} loading={loading} />)} />
+        <Route path='/clients' element={SidebarWrapper(<ClientsPage dataset={data} loading={loading} />)} />
+        <Route path='/operators' element={SidebarWrapper(<OperatorsPage dataset={data} loading={loading} />)} />
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/support' element={<Support />} />
       </Routes>
